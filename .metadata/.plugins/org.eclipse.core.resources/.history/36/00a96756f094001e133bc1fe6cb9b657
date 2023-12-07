@@ -1,0 +1,8 @@
+package com.gestor.service;
+
+import com.gestor.model.Impuesto;
+
+public interface ImpuestoService {
+	void pagoImpuesto(int idImpuesto, double pago);
+	void modificarImpuesto(int idImpuesto, Impuesto impuesto);
+}

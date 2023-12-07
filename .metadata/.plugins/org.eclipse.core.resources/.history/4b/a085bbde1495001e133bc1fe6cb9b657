@@ -1,0 +1,13 @@
+package com.gestor.service;
+
+import java.util.List;
+
+import com.gestor.model.Deuda;
+
+public interface DeudaService {
+	List<Deuda> listadoImpuestos();
+	void pagoImpuesto(int idImpuesto, double cantidadPagada);
+	void modificarImpuesto(int idImpuesto, Deuda impuesto);
+	Deuda buscarImpuesto(int idImpuesto);
+	
+}

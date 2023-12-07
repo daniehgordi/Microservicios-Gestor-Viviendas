@@ -1,0 +1,16 @@
+package com.gestor.service;
+
+import java.util.List;
+
+import com.gestor.model.Movimiento;
+
+public interface MovimientoService {
+	
+	List<Movimiento> listadoMovimientos();
+	List<Movimiento> devolverListaIngresos();
+	List<Movimiento> devolverListaGastos();
+	double rendimientoNeto();
+	void borrarMovimiento(int idMovimiento);
+	
+	
+}

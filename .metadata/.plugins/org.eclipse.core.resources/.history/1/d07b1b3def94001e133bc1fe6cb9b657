@@ -1,0 +1,54 @@
+package com.gestor.service;
+
+import java.util.List;
+
+import org.springframework.beans.factory.annotation.Autowired;
+import org.springframework.stereotype.Service;
+
+import com.gestor.dao.ImpuestoDao;
+import com.gestor.model.Impuesto;
+
+@Service
+public class ImpuestoServiceImplement implements ImpuestoService {
+	
+	@Autowired
+	ImpuestoDao dao;
+
+	@Override
+	public double pagoImpuesto(int idImpuesto, double pago) {
+		
+		
+		List<Impuesto> listadoImpuestos = dao.findAll();
+		for(Impuesto impuesto:listadoImpuestos) {
+			if(impuesto.getIdImpuesto() == idImpuesto) {
+				comprobacionRequisitos(impuesto.getValorImpuesto(), pago);
+				return impuesto.getValorImpuesto()-pago;
+			}
+		}
+		return 0;
+	}
+
+	@Override
+	public void modificarImpuesto(int idImpuesto, Impuesto impuesto) {
+		// TODO Auto-generated method stub
+
+	}
+
+	private boolean comprobacionRequisitos(int idImpuesto, double pago) {
+	    try {
+	        if (idImpuesto == getIdImpuesto() < 0 || pago < 0) {
+	            throw new IllegalArgumentException("Inserte una cantidad positiva.");
+	        }
+	        if (valorImpuesto < pago) {
+	            throw new IllegalArgumentException("No puedes pagar más de lo que debes.");
+	        }
+	        return true;
+	    } catch (IllegalArgumentException e) {
+	        System.out.println("Advertencia: " + e.getMessage());
+	    } finally {
+	        System.out.println("Su proceso de retirada ha finalizado.");
+	    }
+	    return false; // Agregué un valor de retorno para el caso en que no se arroje una excepción.
+	}
+
+}

@@ -1,0 +1,13 @@
+package com.gestor.service;
+
+import java.util.List;
+
+import com.gestor.model.Deuda;
+
+public interface DeudaService {
+	List<Deuda> listadoDeudas();
+	void pagoDeuda(int idDeuda, double cantidadPagada);
+	void modificarDeuda(int idDeuda, Deuda deuda);
+	Deuda buscarDeuda(int idDeuda);
+	
+}

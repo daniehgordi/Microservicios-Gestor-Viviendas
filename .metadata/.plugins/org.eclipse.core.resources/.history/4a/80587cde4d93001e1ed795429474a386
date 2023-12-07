@@ -1,0 +1,48 @@
+package com.gestor.service;
+
+import java.util.List;
+
+import org.springframework.beans.factory.annotation.Autowired;
+import org.springframework.stereotype.Service;
+
+import com.gestor.dao.MovimientoDao;
+import com.gestor.model.Movimiento;
+
+@Service
+public class MovimientoServiceImplement implements MovimientoService {
+	
+	@Autowired
+	MovimientoDao dao;
+
+	@Override
+	public List<Movimiento> listadoMovimientos() {
+		return dao.findAll();
+	}
+
+	@Override
+	public List<Movimiento> devolverLista(String tipo) {
+		return dao.findAllByTipo(tipo);
+	}
+
+	@Override
+	public double rendimientoNeto() {
+		List<Movimiento> listadoIngresos = dao.findAllByTipo("ingreso");
+		List<Movimiento> listadoGastos = dao.findAllByTipo("gasto");
+		for(Movimiento movimiento:listadoIngresos) {
+			double ingresosTotales = 0;
+			ingresosTotales += movimiento.getCantidad();
+		}
+		for(Movimiento movimiento1:listadoGastos)
+		
+		return 0;
+	}
+
+	@Override
+	public void borrarMovimiento(int idMovimiento) {
+		// TODO Auto-generated method stub
+		
+	}
+
+
+
+}

@@ -1,0 +1,54 @@
+<!DOCTYPE html>
+<html xmlns:th="http://www.thymeleaf.org">
+<head>
+    <title>Movimiento Controller</title>
+</head>
+<body>
+    <h1>Listado de Movimientos</h1>
+    <table>
+        <thead>
+            <tr>
+                <th>ID Movimiento</th>
+                <th>Fecha</th>
+                <th>Tipo</th>
+                <th>Cantidad</th>
+                <th>Concepto</th>
+                <th>ID Propiedad</th>
+            </tr>
+        </thead>
+        <tbody>
+            <tr th:each="movimiento : ${movimientos}">
+                <td th:text="${movimiento.idMovimiento}"></td>
+                <td th:text="${movimiento.fecha}"></td>
+                <td th:text="${movimiento.tipo}"></td>
+                <td th:text="${movimiento.cantidad}"></td>
+                <td th:text="${movimiento.concepto}"></td>
+                <td th:text="${movimiento.idPropiedad}"></td>
+            </tr>
+        </tbody>
+    </table>
+    
+    <h1>Rendimiento Neto</h1>
+    <form action="#" th:action="@{/gestor/rendimiento}" method="get">
+        <label for="idPropiedad">ID Propiedad:</label>
+        <input type="text" id="idPropiedad" name="idPropiedad" required>
+        <button type="submit">Calcular Rendimiento</button>
+    </form>
+    <p th:text="${rendimientoNeto}"></p>
+    
+    <h1>Crear Movimiento</h1>
+    <form action="#" th:action="@{/gestor}" method="post" th:object="${newMovimiento}">
+        <label for="fecha">Fecha:</label>
+        <input type="date" id="fecha" name="fecha" required>
+        <label for="tipo">Tipo:</label>
+        <input type="text" id="tipo" name="tipo" required>
+        <label for="cantidad">Cantidad:</label>
+        <input type="text" id="cantidad" name="cantidad" required>
+        <label for="concepto">Concepto:</label>
+        <input type="text" id="concepto" name="concepto" required>
+        <label for="idPropiedad">ID Propiedad:</label>
+        <input type="text" id="idPropiedad" name="idPropiedad" required>
+        <button type="submit">Crear Movimiento</button>
+    </form>
+</body>
+</html>

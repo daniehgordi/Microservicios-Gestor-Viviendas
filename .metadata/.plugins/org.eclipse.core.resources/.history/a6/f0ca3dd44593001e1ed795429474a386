@@ -1,0 +1,23 @@
+package com.gestor.model;
+
+import java.util.Date;
+
+public class Ingreso extends Movimiento {
+
+	public Ingreso() {
+		super();
+
+	}
+
+	public Ingreso(Date date, double cantidad, String concepto, int idPropiedad) {
+		super(date, cantidad, concepto, idPropiedad);
+
+	}
+	
+	public double ingresa() {
+		return getCantidad();
+		
+	}
+	
+	
+}

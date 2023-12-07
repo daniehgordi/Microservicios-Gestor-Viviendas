@@ -1,0 +1,71 @@
+<!DOCTYPE html>
+<html xmlns:th="http://www.thymeleaf.org">
+<head>
+    <title>Movimiento Controller</title>
+    <link rel="stylesheet" th:href="@{/webjars/bootstrap/5.3.1/css/bootstrap.min.css}">
+</head>
+<body>
+    <div class="container">
+        <h1>Listado de Movimientos</h1>
+        <table class="table">
+            <thead>
+                <tr>
+                    <th>ID Movimiento</th>
+                    <th>Fecha</th>
+                    <th>Tipo</th>
+                    <th>Cantidad</th>
+                    <th>Concepto</th>
+                    <th>ID Propiedad</th>
+                </tr>
+            </thead>
+            <tbody>
+                <tr th:each="movimiento : ${movimientos}">
+                    <td th:text="${movimiento.idMovimiento}"></td>
+                    <td th:text="${movimiento.fecha}"></td>
+                    <td th:text="${movimiento.tipo}"></td>
+                    <td th:text="${movimiento.cantidad}"></td>
+                    <td th:text="${movimiento.concepto}"></td>
+                    <td th:text="${movimiento.idPropiedad}"></td>
+                </tr>
+            </tbody>
+        </table>
+        
+        <h1>Rendimiento Neto</h1>
+        <form action="#" th:action="@{/gestor/rendimiento}" method="get">
+            <div class="mb-3">
+                <label for="idPropiedad" class="form-label">ID Propiedad:</label>
+                <input type="text" id="idPropiedad" name="idPropiedad" class="form-control" required>
+            </div>
+            <button type="submit" class="btn btn-primary">Calcular Rendimiento</button>
+        </form>
+        <p th:text="${rendimientoNeto}"></p>
+        
+        <h1>Crear Movimiento</h1>
+        <form action="#" th:action="@{/gestor}" method="post" th:object="${newMovimiento}">
+            <div class="mb-3">
+                <label for="fecha" class="form-label">Fecha:</label>
+                <input type="date" id="fecha" name="fecha" class="form-control" required>
+            </div>
+            <div class="mb-3">
+                <label for="tipo" class="form-label">Tipo:</label>
+                <input type="text" id="tipo" name="tipo" class="form-control" required>
+            </div>
+            <div class="mb-3">
+                <label for="cantidad" class="form-label">Cantidad:</label>
+                <input type="text" id="cantidad" name="cantidad" class="form-control" required>
+            </div>
+            <div class="mb-3">
+                <label for="concepto" class="form-label">Concepto:</label>
+                <input type="text" id="concepto" name="concepto" class="form-control" required>
+            </div>
+            <div class="mb-3">
+                <label for="idPropiedad" class="form-label">ID Propiedad:</label>
+                <input type="text" id="idPropiedad" name="idPropiedad" class="form-control" required>
+            </div>
+            <button type="submit" class="btn btn-primary">Crear Movimiento</button>
+        </form>
+    </div>
+    
+    <script th:src="@{/webjars/bootstrap/5.3.1/js/bootstrap.min.js}"></script>
+</body>
+</html>

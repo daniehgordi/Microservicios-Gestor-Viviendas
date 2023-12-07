@@ -1,0 +1,77 @@
+package com.gestor.service;
+
+import java.util.List;
+
+import org.springframework.beans.factory.annotation.Autowired;
+import org.springframework.stereotype.Service;
+
+import com.gestor.dao.DeudaDao;
+import com.gestor.model.Deuda;
+
+@Service
+public class DeudaServiceImplement implements DeudaService {
+	
+	@Autowired
+	DeudaDao dao;
+
+	@Override
+	public void pagoDeuda(int idDeuda, double cantidadPagada) {
+		Deuda impuesto = buscarImpuesto(idImpuesto);
+		boolean valoracion = comprobacionRequisitos(impuesto.getValorImpuesto(), cantidadPagada);
+		double pagosTotales = impuesto.getPago()+cantidadPagada;
+			if(valoracion == true && impuesto.getValorImpuesto() == pagosTotales) {
+				double balance = impuesto.getValorImpuesto() - pagosTotales;
+				impuesto.setBalance(balance);
+				impuesto.setPago(pagosTotales);
+				impuesto.setEstado("PAGADO");
+			}else if(valoracion == true && impuesto.getValorImpuesto() > pagosTotales) {
+				double balance = impuesto.getValorImpuesto() - pagosTotales;
+				impuesto.setBalance(balance);
+				impuesto.setPago(pagosTotales);
+				impuesto.setEstado("IMPAGADO");
+			}
+			dao.save(impuesto);
+	}
+	
+
+	private boolean comprobacionRequisitos(double valorImpuesto, double pago) {
+	    try {
+	        if (pago < 0) {
+	            throw new IllegalArgumentException("Inserte una cantidad positiva.");
+	        }
+	        if(valorImpuesto < pago) {
+	        	throw new IllegalArgumentException("El pago no puede ser mayor que la cantidad a pagar.");
+	        }
+	        return true;
+	    } catch (IllegalArgumentException e) {
+	        System.out.println("Advertencia: " + e.getMessage());
+	    } finally {
+	        System.out.println("Perfecto");
+	    }
+		return false;
+	}
+
+	@Override
+	public void modificarImpuesto(int idImpuesto, Deuda impuesto) {
+		Deuda impuesto1 = buscarImpuesto(idImpuesto);
+		impuesto1.setConcepto(impuesto.getConcepto());
+		impuesto1.setValorImpuesto(impuesto.getValorImpuesto());
+		impuesto1.setFecha(impuesto.getFecha());
+		dao.save(impuesto1);	
+	}
+	
+	@Override
+	public Deuda buscarImpuesto(int idImpuesto) {
+		return dao.findById(idImpuesto).orElse(null);
+		
+	}
+
+
+	@Override
+	public List<Deuda> listadoImpuestos() {
+		return dao.findAll();
+	}
+	
+    
+
+}

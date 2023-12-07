@@ -1,0 +1,68 @@
+package com.gestor.service;
+
+import java.util.List;
+
+import org.springframework.beans.factory.annotation.Autowired;
+import org.springframework.stereotype.Service;
+
+import com.gestor.dao.MovimientoDao;
+import com.gestor.model.Movimiento;
+
+@Service
+public class MovimientoServiceImplement implements MovimientoService {
+	
+	@Autowired
+	MovimientoDao dao;
+
+	@Override
+	public List<Movimiento> listadoMovimientos() {
+		return dao.findAll();
+	}
+
+	@Override
+	public List<Movimiento> devolverLista(String tipo) {
+		return dao.findAllByTipo(tipo);
+	}
+
+	@Override
+	public double rendimientoNeto(int idPropiedad) {
+		double ingresosTotales = 0;
+		double gastosTotales = 0;
+		List<Movimiento> listadoIngresos = dao.findAllByTipo("ingreso");
+		List<Movimiento> listadoGastos = dao.findAllByTipo("gasto");
+		for(Movimiento movimiento:listadoIngresos) {
+			if(movimiento.getIdPropiedad()==idPropiedad) {
+				ingresosTotales += movimiento.getCantidad();
+			}	
+		}
+		for(Movimiento movimiento1:listadoGastos) {
+			if(movimiento1.getIdPropiedad()==idPropiedad) {
+				gastosTotales += movimiento1.getCantidad();
+			}
+		}
+		double rendimientoNeto = ingresosTotales - gastosTotales;
+		
+		return rendimientoNeto;
+	}
+
+	@Override
+	public void borrarMovimiento(int idMovimiento) {
+		dao.deleteById(idMovimiento);
+		
+	}
+	
+	@Override
+	public void crearMovimiento(Movimiento movimiento) {
+		dao.save(movimiento);
+		
+	}
+
+	@Override
+	public Movimiento buscarMovimiento(int idMovimiento) {
+		Movimiento movimiento = dao.getById(idMovimiento);
+		return movimiento;
+	}
+
+
+
+}

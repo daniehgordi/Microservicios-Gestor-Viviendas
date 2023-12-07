@@ -1,0 +1,21 @@
+package com.gestor.model;
+
+import java.util.Date;
+
+public class Gasto extends Movimiento{
+
+	public Gasto() {
+		super();
+	}
+
+	public Gasto(Date date, String "gasto", double cantidad, String concepto, int idPropiedad) {
+		super(date, cantidad, concepto, idPropiedad);
+	}
+	
+	public double gastar() {
+		return -getCantidad();
+	}
+	
+	
+
+}

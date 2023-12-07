@@ -1,0 +1,7 @@
+package com.gestor.dao;
+
+import org.springframework.data.jpa.repository.JpaRepository;
+
+public interface TablaRendimientoDao extends JpaRepository<TablaRendimiento, Integer> {
+
+}

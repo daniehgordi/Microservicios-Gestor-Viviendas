@@ -1,0 +1,66 @@
+package com.gestor.service;
+
+import org.springframework.beans.factory.annotation.Autowired;
+import org.springframework.stereotype.Service;
+
+import com.gestor.dao.ImpuestoDao;
+import com.gestor.model.EstadoEnum;
+import com.gestor.model.Impuesto;
+
+@Service
+public class ImpuestoServiceImplement implements ImpuestoService {
+	
+	@Autowired
+	ImpuestoDao dao;
+
+	@Override
+	public void pagoImpuesto(int idImpuesto, double pago) {
+		Impuesto impuesto = buscarImpuesto(idImpuesto);
+			if(impuesto.getIdImpuesto() == idImpuesto) {
+				comprobacionRequisitos(impuesto.getValorImpuesto(), pago);
+				double resultado = impuesto.getValorImpuesto()- pago;
+				if(resultado > 0) {
+					impuesto.setValorImpuesto(resultado);
+					impuesto.setEstado(EstadoEnum.IMPAGADO);
+				}else {
+					impuesto.setValorImpuesto(resultado);
+					impuesto.setEstado(EstadoEnum.PAGADO);
+				}
+					
+			}
+	}
+	
+
+	private void comprobacionRequisitos(double valorImpuesto, double pago) {
+	    try {
+	        if (pago < 0) {
+	            throw new IllegalArgumentException("Inserte una cantidad positiva.");
+	        }
+	        if(valorImpuesto < pago) {
+	        	throw new IllegalArgumentException("El pago no puede ser mayor que la cantidad a pagar.");
+	        }
+	    } catch (IllegalArgumentException e) {
+	        System.out.println("Advertencia: " + e.getMessage());
+	    } finally {
+	        System.out.println("Perfecto");
+	    }
+	}
+
+	@Override
+	public void modificarImpuesto(int idImpuesto, Impuesto impuesto) {
+		Impuesto impuesto1 = buscarImpuesto(idImpuesto);
+		impuesto1.setConcepto(impuesto.getConcepto());
+		impuesto1.setValorImpuesto(impuesto.getValorImpuesto());
+		impuesto1.setFecha(impuesto.getFecha());
+		dao.save(impuesto1);	
+	}
+	
+	@Override
+	public Impuesto buscarImpuesto(int idImpuesto) {
+		return dao.findById(idImpuesto).orElse(null);
+		
+	}
+	
+    
+
+}

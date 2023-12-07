@@ -1,0 +1,84 @@
+package com.gestor.model;
+
+import java.util.Date;
+
+import jakarta.persistence.Column;
+import jakarta.persistence.Entity;
+import jakarta.persistence.GeneratedValue;
+import jakarta.persistence.GenerationType;
+import jakarta.persistence.Id;
+import jakarta.persistence.Table;
+
+@Entity
+@Table(name="impuestos")
+public class Impuesto {
+	@Id
+    @GeneratedValue(strategy=GenerationType.IDENTITY)
+    @Column(name="id_impuesto")
+	private int idImpuesto;
+	@Column(name="concepto")
+	private String concepto;
+	@Column(name="valor_impuesto")
+	private double valorImpuesto;
+	private String estado;
+	private Date fecha;
+	
+	public Impuesto() {
+		super();
+	}
+
+	public Impuesto(String concepto, double valorImpuesto,Date fecha) {
+		super();
+		this.concepto = concepto;
+		this.valorImpuesto = valorImpuesto;
+		this.fecha = fecha;
+		this.estado  = estado;
+	}
+
+	public int getIdImpuesto() {
+		return idImpuesto;
+	}
+
+	public void setIdImpuesto(int idImpuesto) {
+		this.idImpuesto = idImpuesto;
+	}
+
+	public String getConcepto() {
+		return concepto;
+	}
+
+	public void setConcepto(String concepto) {
+		this.concepto = concepto;
+	}
+
+	public double getValorImpuesto() {
+		return valorImpuesto;
+	}
+
+	public void setValorImpuesto(double valorImpuesto) {
+		this.valorImpuesto = valorImpuesto;
+	}
+
+	public Date getFecha() {
+		return fecha;
+	}
+
+	public void setFecha(Date fecha) {
+		this.fecha = fecha;
+	}
+
+	public EstadoEnum getEstado() {
+		return estado;
+	}
+
+	public void setEstado(EstadoEnum estado) {
+		this.estado = estado;
+	}
+	
+	
+	
+	
+	
+	
+
+}

@@ -1,0 +1,14 @@
+package com.gestor.service;
+
+import java.util.Date;
+
+public interface TablaRendimientoService {
+	void ingreso(double cantidad);
+	void gasto(double cantidad);
+	void gestionExterna(double cantidad);
+	void cambioConcepto(String nuevoConcepto);
+	void cambioFecha(Date nuevaFecha);
+	void borrarMovimiento(int idMovimiento);
+	
+	
+}

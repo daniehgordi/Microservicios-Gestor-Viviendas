@@ -1,0 +1,47 @@
+package com.gestor.service;
+
+import java.util.List;
+
+import org.springframework.beans.factory.annotation.Autowired;
+import org.springframework.web.bind.annotation.RestController;
+
+import com.gestor.dao.UsuarioDao;
+import com.gestor.dto.PropiedadesDto;
+import com.gestor.model.Usuario;
+
+@RestController
+public class UsuarioServiceImplement implements UsuarioService {
+
+	@Autowired
+	UsuarioDao dao;
+	@Override
+	public List<Usuario> listadoUsuarios() {
+		List<Usuario> listado = dao.findAll();
+		return listado;
+	}
+
+	@Override
+	public Usuario buscarUsuario(int idUsuario) {
+		Usuario usuario = dao.findById(idUsuario).orElse(null);
+		return usuario;
+	}
+
+	@Override
+	public void borrarUsuario(int idUsuario) {
+		dao.deleteAllById(idUsuario);
+
+	}
+
+	@Override
+	public void actualizarUsuario(Usuario usuario) {
+		// TODO Auto-generated method stub
+
+	}
+
+	@Override
+	public List<PropiedadesDto> propiedadesUsuario(int idUsuario) {
+		// TODO Auto-generated method stub
+		return null;
+	}
+
+}

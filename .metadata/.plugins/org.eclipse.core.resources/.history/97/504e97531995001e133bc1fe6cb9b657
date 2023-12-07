@@ -1,0 +1,17 @@
+package com.gestor.model;
+
+public class Propiedad {
+	private int idPropiedad;
+	private double valorFiscal;
+	private double valorCatastral;
+	private double metrosCuadrados;
+	private int idMovimiento;
+	private int idUsuario;
+	
+	public Propiedad() {
+		super();
+	}
+	
+	
+
+}

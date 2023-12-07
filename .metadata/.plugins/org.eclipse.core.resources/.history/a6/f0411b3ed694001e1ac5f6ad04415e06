@@ -1,0 +1,5 @@
+package com.gestor.dto;
+
+public class PropiedadesDto {
+
+}

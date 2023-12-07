@@ -1,0 +1,15 @@
+package com.gestor.dao;
+
+import java.util.List;
+
+import org.springframework.data.jpa.repository.JpaRepository;
+import org.springframework.data.jpa.repository.Query;
+
+import com.gestor.model.Movimiento;
+
+public interface MovimientoDao extends JpaRepository<Movimiento, Integer> {
+	List<Movimiento> findAllByTipo(String tipo);
+	@Query("SELECT SUM(m.cantidad) FROM Movimiento m WHERE m.tipo = ?1")
+	double sumarTodosTipo(String tipo);
+	
+}

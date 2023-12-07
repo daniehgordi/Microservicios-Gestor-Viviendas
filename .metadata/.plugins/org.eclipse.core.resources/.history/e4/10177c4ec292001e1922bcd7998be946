@@ -1,0 +1,60 @@
+package com.gestor.model;
+
+import java.util.Date;
+
+public class Movimiento {
+	private int idMovimiento;
+	private Date date;
+	private double cantidad; 
+	private String concepto;
+	private int idPropiedad;
+	
+	public Movimiento() {
+		super();
+	}
+
+	public Movimiento(int idMovimiento, int idPropiedad) {
+		super();
+		this.idMovimiento = idMovimiento;
+		this.idPropiedad = idPropiedad;
+	}
+
+	public int getIdidMovimiento() {
+		return idMovimiento;
+	}
+
+	public void setidMovimiento(int idMovimiento) {
+		this.idMovimiento = idMovimiento;
+	}
+
+	public Date getDate() {
+		return date;
+	}
+
+	public void setDate(Date date) {
+		this.date = date;
+	}
+
+	public String getConcepto() {
+		return concepto;
+	}
+
+	public void setConcepto(String concepto) {
+		this.concepto = concepto;
+	}
+
+	public int getIdPropiedad() {
+		return idPropiedad;
+	}
+
+	public double getSaldo() {
+		return saldo;
+	}
+
+	
+	
+	
+	
+	
+
+}

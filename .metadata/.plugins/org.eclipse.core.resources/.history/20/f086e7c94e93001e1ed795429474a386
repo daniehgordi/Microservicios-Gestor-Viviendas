@@ -1,0 +1,11 @@
+package com.gestor.controller;
+
+import org.springframework.web.bind.annotation.RestController;
+
+@RestController
+public class MovimientoController {
+	@Autowired
+	MovimientoService = service;
+
+	
+}

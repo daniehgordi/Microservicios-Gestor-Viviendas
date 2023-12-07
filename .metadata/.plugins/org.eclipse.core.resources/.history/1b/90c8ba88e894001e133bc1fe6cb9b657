@@ -1,0 +1,55 @@
+package com.gestor.model;
+
+public class Impuesto {
+	private int idImpuesto;
+	private String concepto;
+	private String tipo;
+	private double valorImpuesto;
+	private double pago;
+	
+	public Impuesto() {
+		super();
+	}
+	
+	public Impuesto(String concepto, String tipo, double valorImpuesto, double pago) {
+		super();
+		this.concepto = concepto;
+		this.tipo = tipo;
+		this.valorImpuesto = valorImpuesto;
+		this.pago = pago;
+	}
+	
+	public int getIdImpuesto() {
+		return idImpuesto;
+	}
+	public void setIdImpuesto(int idImpuesto) {
+		this.idImpuesto = idImpuesto;
+	}
+	public String getConcepto() {
+		return concepto;
+	}
+	public void setConcepto(String concepto) {
+		this.concepto = concepto;
+	}
+	public String getTipo() {
+		return tipo;
+	}
+	public void setTipo(String tipo) {
+		this.tipo = tipo;
+	}
+	public double getValorImpuesto() {
+		return valorImpuesto;
+	}
+	public void setValorImpuesto(double valorImpuesto) {
+		this.valorImpuesto = valorImpuesto;
+	}
+	public double getPago() {
+		return pago;
+	}
+	public void setPago(double pago) {
+		this.pago = pago;
+	}
+	
+	
+
+}

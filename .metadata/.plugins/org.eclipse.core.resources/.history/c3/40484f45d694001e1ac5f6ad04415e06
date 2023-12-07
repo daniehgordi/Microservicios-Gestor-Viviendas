@@ -1,0 +1,16 @@
+package com.gestor.service;
+
+import java.util.List;
+
+import com.gestor.dto.PropiedadesDto;
+import com.gestor.model.Usuario;
+
+public interface UsuarioService {
+	
+	List<Usuario> listadoUsuarios();
+	Usuario buscarUsuario(int idUsuario);
+	void borrarUsuario(int idUsuario);
+	void actualizarUsuario(int idUsuario, Usuario usuario);
+	boolean autentificacion(String correo, String contrasena);
+	
+}

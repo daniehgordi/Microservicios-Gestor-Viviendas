@@ -1,0 +1,15 @@
+package com.gestor.service;
+
+import java.util.Date;
+
+public interface MovimientoService {
+	void ingreso(double cantidad);
+	void gasto(double cantidad);
+	void gestionExterna(double cantidad);
+	void cambioConcepto(String nuevoConcepto);
+	void cambioFecha(Date nuevaFecha);
+	List<Movimiento> listadoMovimientos();
+	void borrarMovimiento(int idMovimiento);
+	
+	
+}
