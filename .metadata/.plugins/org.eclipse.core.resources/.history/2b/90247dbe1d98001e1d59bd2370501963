@@ -1,0 +1,67 @@
+package com.gestor.service;
+
+import java.util.Arrays;
+import java.util.List;
+
+import org.springframework.beans.factory.annotation.Autowired;
+import org.springframework.stereotype.Service;
+import org.springframework.web.client.RestTemplate;
+
+import com.gestor.dao.PropiedadDao;
+import com.gestor.dto.DeudaDto;
+import com.gestor.dto.UsuarioDto;
+import com.gestor.model.Propiedad;
+
+@Service
+public class PropiedadServiceImplement implements PropiedadService{
+	
+	@Autowired
+	PropiedadDao dao;
+	
+	@Autowired
+	private RestTemplate template;
+	
+	private String urlUsuarios="http://localhost:9090/";
+	
+	
+	@Override
+	public List<Propiedad> propiedadesUsuario(int idUsuario) {
+		int userId = 0;
+		List<UsuarioDto> listaUsuarios = Arrays.asList(template.getForObject(urlUsuarios + "usuarios", UsuarioDto[].class));
+		for(UsuarioDto user:listaUsuarios) {
+			if(user.getIdUsuario() == idUsuario) {
+				userId = user.getIdUsuario();
+			}
+			
+		}
+		List<Propiedad> listadoPropiedadesPorUsuario = dao.findByIdUsuario(userId);
+		return listadoPropiedadesPorUsuario;
+	}
+
+	@Override
+	public List<Propiedad> listadoPropiedades() {
+		return dao.findAll();
+	}
+
+	@Override
+	public void crearPropiedad(Propiedad propiedad) {
+		dao.save(propiedad);
+		
+	}
+
+	@Override
+	public void borrarLista(int idPropiedad) {
+		dao.deleteById(idPropiedad);
+		
+	}
+
+	@Override
+	public Propiedad buscarPropiedad(int idPropiedad) {
+		return dao.findById(idPropiedad).orElse(null);
+	}
+
+	
+
+	
+
+}

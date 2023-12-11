@@ -21,26 +21,26 @@ public class UsuarioController {
 	@Autowired
 	private UsuarioService service;
 	
-	//http://localhost:9090/gestor
-    @GetMapping(value="/gestor", produces=MediaType.APPLICATION_JSON_VALUE)
+	//http://localhost:9090/usuarios
+    @GetMapping(value="/usuarios", produces=MediaType.APPLICATION_JSON_VALUE)
 	List<Usuario> listado(){
 		return service.listadoUsuarios();
 	}
     
-    //http://localhost:9090/gestor/1
-    @GetMapping(value="/gestor/{idUsuario}", produces=MediaType.APPLICATION_JSON_VALUE)
+    //http://localhost:9090/usuarios/1
+    @GetMapping(value="/usuarios/{idUsuario}", produces=MediaType.APPLICATION_JSON_VALUE)
 	public Usuario busqueda(@PathVariable("idUsuario") int idUsuario){
 		return service.buscarUsuario(idUsuario);
 	}
     
-    //http://localhost:9090/gestor/1
-    @DeleteMapping(value="/gestor/{idUsuario}", produces=MediaType.APPLICATION_JSON_VALUE)
+    //http://localhost:9090/usuarios/1
+    @DeleteMapping(value="/usuarios/{idUsuario}", produces=MediaType.APPLICATION_JSON_VALUE)
 	public void borrar(@PathVariable("idUsuario") int idUsuario){
 		service.borrarUsuario(idUsuario);
 	}
     
-    //http://localhost:9090/gestor/1
-    @PutMapping(value="/gestor/{idUsuario}", produces=MediaType.APPLICATION_JSON_VALUE)
+    //http://localhost:9090/usuarios/1
+    @PutMapping(value="/usuarios/{idUsuario}", produces=MediaType.APPLICATION_JSON_VALUE)
     public void actualizar(@PathVariable("idUsuario") int idUsuario, @RequestBody Usuario usuario) {
     	service.actualizarUsuario(idUsuario, usuario);
     }

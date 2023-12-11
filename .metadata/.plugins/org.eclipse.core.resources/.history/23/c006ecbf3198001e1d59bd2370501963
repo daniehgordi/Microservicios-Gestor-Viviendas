@@ -1,0 +1,59 @@
+package com.gestor.controller;
+
+import java.util.List;
+
+import org.springframework.beans.factory.annotation.Autowired;
+import org.springframework.http.MediaType;
+import org.springframework.web.bind.annotation.GetMapping;
+import org.springframework.web.bind.annotation.PathVariable;
+import org.springframework.web.bind.annotation.PostMapping;
+import org.springframework.web.bind.annotation.PutMapping;
+import org.springframework.web.bind.annotation.RequestBody;
+import org.springframework.web.bind.annotation.RequestParam;
+//import org.springframework.web.bind.annotation.PutMapping;
+//import org.springframework.web.bind.annotation.RequestBody;
+//import org.springframework.web.bind.annotation.RequestParam;
+import org.springframework.web.bind.annotation.RestController;
+
+import com.gestor.model.Deuda;
+import com.gestor.service.DeudaService;
+
+@RestController
+public class DeudaController {
+	
+	@Autowired
+	DeudaService service;
+	
+	//http://localhost:8000/deudas
+	@GetMapping(value="/deudas", produces=MediaType.APPLICATION_JSON_VALUE)
+	public List<Deuda> listar(){
+		return service.listadoDeudas();	
+	}
+	
+	//http://localhost:8000/deudas/1
+	@PostMapping(value="/deudas/{idDeuda}", produces=MediaType.APPLICATION_JSON_VALUE)
+	public void pagarDeudas(@PathVariable("idDeuda") int idDeuda, @RequestParam double cantidadPagada) {
+		service.pagoDeuda(idDeuda, cantidadPagada);
+	}
+	
+	//http://localhost:8000/deudas/1
+	@PutMapping(value="/deudas/{idDeuda}", produces=MediaType.APPLICATION_JSON_VALUE)
+	public void modificacionImpuesto(@PathVariable int idDeuda, @RequestBody Deuda deuda) {
+		service.modificarDeuda(idDeuda, deuda);
+	}
+	
+	//http://localhost:8000/deudas/buscar/3
+	@GetMapping(value="/deudas/buscar/{idDeuda}", produces=MediaType.APPLICATION_JSON_VALUE)
+	public Deuda buscarDeudaPorId(@PathVariable int idDeuda) {
+		return service.buscarDeuda(idDeuda);
+	}
+	
+	//http://localhost:8000/deudas/total/1
+	@GetMapping(value="/deudas/total/{idPropiedad}", consumes=MediaType.APPLICATION_JSON_VALUE)
+	public List<Deuda> listadoDeudasPorPropiedad(@PathVariable int idPropiedad) {
+		return service.deudasPorPropiedad(idPropiedad);
+	}
+	
+	
+
+}

@@ -1,0 +1,41 @@
+package com.gestor.model;
+
+import jakarta.persistence.Column;
+import jakarta.persistence.Entity;
+import jakarta.persistence.Table;
+
+@Entity
+@Table(name="propiedades")
+public class Propiedad {
+	
+	
+	@Column(name="id_propiedad")
+	private int idPropiedad;
+	@Column(name="valor_fical")
+	private double valorFiscal;
+	@Column(name="nombre_propiedad")
+	private String nombrePropiedad;
+	@Column(name="direccion")
+	private String direccion;
+	@Column(name="id_propiedad")
+	private int idMovimiento;
+	@Column(name="id_deuda")
+	private int idDeuda;
+	@Column(name="id_impuesto")
+	private int idImpuesto;
+	@Column(name="id_usuario")
+	private int idUsuario;
+	
+	public Propiedad() {
+		super();
+	}
+
+
+
+
+	
+	
+	
+	
+
+}

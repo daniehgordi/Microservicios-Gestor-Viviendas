@@ -21,21 +21,24 @@ public class Impuesto {
 	@Column(name="valor_impuesto")
 	private double valorImpuesto;
 	private double pago;
-	private double balance;
 	private String estado;
 	private Date fecha;
+	@Column(name="id_propiedad")
+	private int idPropiedad;
+	
 	
 	
 	public Impuesto() {
 		super();
 	}
 
-	public Impuesto(String concepto, double valorImpuesto,double pago, Date fecha) {
+	public Impuesto(String concepto, double valorImpuesto,double pago, Date fecha, int idPropiedad) {
 		super();
 		this.concepto = concepto;
 		this.valorImpuesto = valorImpuesto;
 		this.pago = pago;
 		this.fecha = fecha;
+		this.idPropiedad = idPropiedad;
 	}
 
 	public int getIdImpuesto() {
@@ -79,20 +82,20 @@ public class Impuesto {
 		this.pago = pago;
 	}
 
-	public double getBalance() {
-		return balance;
-	}
-
-	public void setBalance(double balance) {
-		this.balance = balance;
-	}
-
 	public String getEstado() {
 		return this.estado;
 	}
 
 	public void setEstado(String estado) {
 		this.estado = estado;
+	}
+
+	public int getIdPropiedad() {
+		return idPropiedad;
+	}
+
+	public void setIdPropiedad(int idPropiedad) {
+		this.idPropiedad = idPropiedad;
 	}
 	
 	

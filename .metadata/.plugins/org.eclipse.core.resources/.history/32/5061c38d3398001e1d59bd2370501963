@@ -1,0 +1,17 @@
+package com.gestor.dao;
+
+import java.util.List;
+
+import org.springframework.data.jpa.repository.JpaRepository;
+
+import com.gestor.dto.MovimientoDto;
+import com.gestor.model.Movimiento;
+import com.gestor.model.Propiedad;
+
+public interface PropiedadDao extends JpaRepository<Propiedad, Integer> {
+
+	List<Propiedad> findByIdUsuario(int idUsuario);
+	List<MovimientoDto> findAllByTipo(String tipo);
+	List<MovimientoDto> findByTipo(String tipo);
+
+}

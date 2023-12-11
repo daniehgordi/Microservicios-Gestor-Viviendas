@@ -13,6 +13,7 @@ public class UsuarioServiceImplement implements UsuarioService {
 
 	@Autowired
 	UsuarioDao dao;
+	
 	@Override
 	public List<Usuario> listadoUsuarios() {
 		List<Usuario> listado = dao.findAll();

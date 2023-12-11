@@ -1,0 +1,93 @@
+package com.gestor.dto;
+
+import java.util.Date;
+
+public class ImpuestoDto {
+
+	private int idImpuesto;
+	private String concepto;
+	private double valorImpuesto;
+	private double pago;
+	private String estado;
+	private Date fecha;
+	private int idPropiedad;
+	
+	
+	
+	public ImpuestoDto() {
+		super();
+	}
+
+	public ImpuestoDto(String concepto, double valorImpuesto,double pago, Date fecha, int idPropiedad) {
+		super();
+		this.concepto = concepto;
+		this.valorImpuesto = valorImpuesto;
+		this.pago = pago;
+		this.fecha = fecha;
+		this.idPropiedad = idPropiedad;
+	}
+
+	public int getIdImpuesto() {
+		return idImpuesto;
+	}
+
+	public void setIdImpuesto(int idImpuesto) {
+		this.idImpuesto = idImpuesto;
+	}
+
+	public String getConcepto() {
+		return concepto;
+	}
+
+	public void setConcepto(String concepto) {
+		this.concepto = concepto;
+	}
+
+	public double getValorImpuesto() {
+		return valorImpuesto;
+	}
+
+	public void setValorImpuesto(double valorImpuesto) {
+		this.valorImpuesto = valorImpuesto;
+	}
+
+	public Date getFecha() {
+		return fecha;
+	}
+
+	public void setFecha(Date fecha) {
+		this.fecha = fecha;
+	}
+	
+
+	public double getPago() {
+		return pago;
+	}
+
+	public void setPago(double pago) {
+		this.pago = pago;
+	}
+
+	public String getEstado() {
+		return this.estado;
+	}
+
+	public void setEstado(String estado) {
+		this.estado = estado;
+	}
+
+	public int getIdPropiedad() {
+		return idPropiedad;
+	}
+
+	public void setIdPropiedad(int idPropiedad) {
+		this.idPropiedad = idPropiedad;
+	}
+	
+	
+	
+	
+	
+	
+
+}

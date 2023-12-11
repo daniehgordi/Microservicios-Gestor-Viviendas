@@ -1,0 +1,30 @@
+package com.gestor.controller;
+
+import java.util.List;
+
+import org.springframework.beans.factory.annotation.Autowired;
+import org.springframework.http.MediaType;
+import org.springframework.web.bind.annotation.GetMapping;
+import org.springframework.web.bind.annotation.RestController;
+
+import com.gestor.model.Propiedad;
+import com.gestor.service.PropiedadService;
+
+@RestController
+public class PropiedadController {
+	
+	@Autowired
+	PropiedadService service;
+	
+	@GetMapping(value="/propiedades", produces=MediaType.APPLICATION_JSON_VALUE)
+	public List<Propiedad> devuelveListado(){
+		return service.listadoPropiedades();
+	}
+	
+	@PostMapping(value="/propiedades/{idPropiedad}", produces=MediaType.APPLICATION_JSON_VALUE)
+	public void borrado() {
+		service.borrarLista(idPropiedad);
+	}
+	
+
+}

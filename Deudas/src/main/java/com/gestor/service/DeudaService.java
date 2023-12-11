@@ -9,5 +9,7 @@ public interface DeudaService {
 	void pagoDeuda(int idDeuda, double cantidadPagada);
 	void modificarDeuda(int idDeuda, Deuda deuda);
 	Deuda buscarDeuda(int idDeuda);
+	List<Deuda> deudasPorPropiedad(int idPropiedad);
+	
 	
 }

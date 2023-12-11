@@ -9,5 +9,6 @@ public interface ImpuestoService {
 	void pagoImpuesto(int idImpuesto, double cantidadPagada);
 	void modificarImpuesto(int idImpuesto, Impuesto impuesto);
 	Impuesto buscarImpuesto(int idImpuesto);
+
 	
 }

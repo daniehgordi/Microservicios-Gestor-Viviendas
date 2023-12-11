@@ -8,6 +8,5 @@ import com.gestor.model.Movimiento;
 
 public interface MovimientoDao extends JpaRepository<Movimiento, Integer> {
 	List<Movimiento> findAllByTipo(String tipo);
-	List<Movimiento> findByTipo(String tipo);
 	
 }

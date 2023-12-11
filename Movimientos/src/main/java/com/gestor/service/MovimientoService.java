@@ -8,7 +8,6 @@ public interface MovimientoService {
 	List<Movimiento> listadoMovimientos();
 	List<Movimiento> devolverLista(String tipo);
 	Movimiento buscarMovimiento(int idMovimiento);
-	double rendimientoNeto(int idPropiedad);
 	void borrarMovimiento(int idMovimiento);
 	public void crearMovimiento(Movimiento movimiento);
 }

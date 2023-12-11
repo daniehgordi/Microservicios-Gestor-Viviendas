@@ -1,11 +1,14 @@
 package com.gestor.service;
 
+import java.util.Arrays;
 import java.util.List;
 
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.stereotype.Service;
+import org.springframework.web.client.RestTemplate;
 
 import com.gestor.dao.DeudaDao;
+import com.gestor.dto.PropiedadDto;
 import com.gestor.model.Deuda;
 
 @Service
@@ -13,20 +16,36 @@ public class DeudaServiceImplement implements DeudaService {
 	
 	@Autowired
 	DeudaDao dao;
-
+	
+	@Autowired
+	private RestTemplate template;
+	
+	private String urlPropiedades = "http://localhost:8070/";
+	
+	@Override
+	public List<Deuda> deudasPorPropiedad(int idPropiedad) {
+		int id = 0;
+		List<PropiedadDto> listadoPropiedades = Arrays.asList(template.getForObject(urlPropiedades + "propiedades", PropiedadDto[].class));
+		for(PropiedadDto propiedad:listadoPropiedades) {
+			if(propiedad.getIdPropiedad() == idPropiedad) {
+				id = propiedad.getIdPropiedad();
+			}
+			
+		}
+		List<Deuda> listaDeudaPropiedad = dao.findByIdPropiedad(id);
+		return listaDeudaPropiedad;
+	}
+	
+	
 	@Override
 	public void pagoDeuda(int idDeuda, double cantidadPagada) {
 		Deuda deuda = buscarDeuda(idDeuda);
 		double pagosTotales = deuda.getCantidadPagada()+cantidadPagada;
 		boolean valoracion = comprobacionRequisitos(deuda.getValorDeuda(), pagosTotales);
 			if(valoracion == true && deuda.getValorDeuda() == pagosTotales) {
-				double balance = deuda.getValorDeuda() - pagosTotales;
-				deuda.setBalance(balance);
 				deuda.setCantidadPagada(pagosTotales);
 				deuda.setEstado("PAGADO");
 			}else if(valoracion == true && deuda.getValorDeuda() > pagosTotales) {
-				double balance = deuda.getValorDeuda() - pagosTotales;
-				deuda.setBalance(balance);
 				deuda.setCantidadPagada(pagosTotales);
 				deuda.setEstado("IMPAGADO");
 			}
@@ -66,12 +85,10 @@ public class DeudaServiceImplement implements DeudaService {
 		
 	}
 
-
 	@Override
 	public List<Deuda> listadoDeudas() {
 		return dao.findAll();
 	}
-	
-    
+  
 
 }

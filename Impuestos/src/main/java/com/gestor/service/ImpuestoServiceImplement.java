@@ -21,13 +21,9 @@ public class ImpuestoServiceImplement implements ImpuestoService {
 		boolean valoracion = comprobacionRequisitos(impuesto.getValorImpuesto(), pagosTotales);
 		
 			if(valoracion == true && impuesto.getValorImpuesto() == pagosTotales) {
-				double balance = impuesto.getValorImpuesto() - pagosTotales;
-				impuesto.setBalance(balance);
 				impuesto.setPago(pagosTotales);
 				impuesto.setEstado("PAGADO");
 			}else if(valoracion == true && impuesto.getValorImpuesto() > pagosTotales) {
-				double balance = impuesto.getValorImpuesto() - pagosTotales;
-				impuesto.setBalance(balance);
 				impuesto.setPago(pagosTotales);
 				impuesto.setEstado("IMPAGADO");
 			}

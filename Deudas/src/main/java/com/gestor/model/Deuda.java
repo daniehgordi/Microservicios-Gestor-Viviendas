@@ -22,20 +22,22 @@ public class Deuda {
 	private double valorDeuda;
 	@Column(name="pago")
 	private double cantidadPagada;
-	private double balance;
 	private String estado;
 	private Date fecha;
+	@Column(name="id_propiedad")
+	private int idPropiedad;
 	
 	
 	public Deuda() {
 		super();
 	}
 
-	public Deuda(String concepto, double valorImpuesto, double cantidadPagada, Date fecha) {
+	public Deuda(String concepto, double valorImpuesto, double cantidadPagada, Date fecha, int idPropiedad) {
 		super();
 		this.concepto = concepto;
 		this.cantidadPagada = cantidadPagada;
 		this.fecha = fecha;
+		this.idPropiedad = idPropiedad;
 	}
 
 	public int getIdDeuda() {
@@ -79,14 +81,6 @@ public class Deuda {
 		this.cantidadPagada = cantidadPagada;
 	}
 
-	public double getBalance() {
-		return balance;
-	}
-
-	public void setBalance(double balance) {
-		this.balance = balance;
-	}
-
 	public String getEstado() {
 		return this.estado;
 	}
@@ -94,6 +88,16 @@ public class Deuda {
 	public void setEstado(String estado) {
 		this.estado = estado;
 	}
+
+	public int getIdPropiedad() {
+		return idPropiedad;
+	}
+
+	public void setIdPropiedad(int idPropiedad) {
+		this.idPropiedad = idPropiedad;
+	}
+	
+	
 	
 	
 	

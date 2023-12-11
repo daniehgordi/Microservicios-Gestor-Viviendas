@@ -19,34 +19,30 @@ public class MovimientoController {
 	@Autowired
 	MovimientoService service;
 	
-	//http://localhost:8080/gestor
-	@GetMapping(value="/gestor", produces=MediaType.APPLICATION_JSON_VALUE)
+	//http://localhost:8080/movimientos
+	@GetMapping(value="/movimientos", produces=MediaType.APPLICATION_JSON_VALUE)
 	public List<Movimiento> listado(){
 		return service.listadoMovimientos();
 	}
 	
-	//http://localhost:8080/gestor/{idMovimiento}
-	@GetMapping(value="/gestor/{idMovimiento}", produces=MediaType.APPLICATION_JSON_VALUE)
+	//http://localhost:8080/movimientos/{idMovimiento}
+	@GetMapping(value="/movimientos/{idMovimiento}", produces=MediaType.APPLICATION_JSON_VALUE)
 	public Movimiento buscarMovi(@PathVariable("idMovimiento") int idMovimiento){
 		return service.buscarMovimiento(idMovimiento);
 	}
 	
-	//http://localhost:8080/gestor
-	@PostMapping(value="/gestor", produces=MediaType.APPLICATION_JSON_VALUE)
+	//http://localhost:8080/movimientos
+	@PostMapping(value="/movimientos", produces=MediaType.APPLICATION_JSON_VALUE)
 	public void creacionMovimiento(@RequestBody Movimiento movimiento){
 		service.crearMovimiento(movimiento);
 	}
 	
-	//http://localhost:8080/gestor/2
-	@DeleteMapping(value="/gestor/{idMovimiento}")
+	//http://localhost:8080/movimientos/2
+	@DeleteMapping(value="/movimientos/{idMovimiento}")
 	public void creacionMovimiento(@PathVariable("idMovimiento") int idMovimiento){
 		service.borrarMovimiento(idMovimiento);
 	}
 	
-	//http://localhost:8080/gestor/rendimiento/2
-	@GetMapping(value="/gestor/rendimiento/{idPropiedad}", produces=MediaType.APPLICATION_JSON_VALUE)
-	public double devolverRendimiento(@PathVariable("idPropiedad") int idPropiedad){
-		return service.rendimientoNeto(idPropiedad);
-	}
+	
 
 }
